@@ -1,0 +1,452 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mi carrito | TiZO</title>
+    <meta name="description" content="Revisa tu carrito TiZO, modifica las cantidades y consulta el subtotal de tus playeras favoritas.">
+    <meta name="author" content="TiZO">
+    <meta name="robots" content="index, follow">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<!-- BOTÓN FLOTANTE DE WHATSAPP -->
+<a
+  href="https://wa.me/5215535069601"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="whatsapp-tizo"
+  aria-label="Contactar a TiZO por WhatsApp"
+  title="Contáctanos por WhatsApp"
+>
+  <i class="bi bi-whatsapp" aria-hidden="true"></i>
+</a>
+<body>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="navbar navbar-tizo">
+        <div class="container">
+            <button class="icon-btn" type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#menuTiZO"
+                aria-controls="menuTiZO"
+                aria-label="Abrir menú">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <a href="index.html" class="logo">TiZO</a>
+
+            <div class="nav-icons">
+                <a href="clothing.html" aria-label="Ver colección">
+                    <i class="bi bi-heart"></i>
+                </a>
+                <a href="carrito.html" class="icono-carrito" aria-label="Mi carrito">
+                    <i class="bi bi-bag"></i>
+                    <span id="contadorCarrito">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MENÚ LATERAL -->
+    <div class="offcanvas offcanvas-start" tabindex="-1"
+        id="menuTiZO" aria-labelledby="menuTiZOTitulo">
+
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="menuTiZOTitulo">TiZO</h5>
+            <button type="button" class="btn-close"
+                data-bs-dismiss="offcanvas" aria-label="Cerrar menú"></button>
+        </div>
+
+        <div class="offcanvas-body">
+            <nav class="menu-tizo" aria-label="Navegación principal">
+                <a href="index.html">Inicio</a>
+                <a href="clothing.html">Clothing</a>
+                <a href="carrito.html">Mi carrito</a>
+                <a href="contacto.html">Contacto</a>
+            </nav>
+        </div>
+    </div>
+
+    <main class="container carrito-pagina">
+
+        <!-- ENCABEZADO -->
+        <header class="encabezado-carrito">
+            <p class="etiqueta-carrito">TI ZO / TU SELECCIÓN</p>
+            <h1>Mi carrito.</h1>
+            <p>Las piezas que elegiste, en un solo lugar.</p>
+        </header>
+
+        <!-- CARRITO Y RESUMEN -->
+        <section class="row g-5">
+
+            <div class="col-lg-8">
+                <div class="titulo-lista-carrito">
+                    <h2>Tu selección</h2>
+                    <a href="clothing.html">Seguir comprando <i class="bi bi-arrow-up-right"></i></a>
+                </div>
+
+                <div id="productosCarrito" aria-live="polite"></div>
+
+                <div id="carritoVacio" class="carrito-vacio" hidden>
+                    <i class="bi bi-bag"></i>
+                    <h3>Por aquí todavía no hay nada.</h3>
+                    <p>Descubre la colección y encuentra tu próximo diseño favorito.</p>
+                    <a href="clothing.html" class="btn-tizo">Explorar colección</a>
+                </div>
+            </div>
+
+            <!-- RESUMEN -->
+            <aside class="col-lg-4">
+                <div class="resumen-carrito">
+                    <h2>Resumen</h2>
+
+                    <div class="linea-resumen">
+                        <span>Artículos</span>
+                        <span id="cantidadResumen">0</span>
+                    </div>
+
+                    <div class="linea-resumen">
+                        <span>Subtotal</span>
+                        <span id="subtotalCarrito">$0 MXN</span>
+                    </div>
+
+                    <p class="nota-resumen">El envío, si aplica, se calcula por separado.</p>
+
+                    <button type="button" id="btnPedido" class="btn-tizo btn-pedido" disabled>
+                        Preparar pedido <i class="bi bi-arrow-right"></i>
+                    </button>
+
+                    <p class="nota-resumen mt-3">
+                        El pedido se prepara por correo. El envío de la solicitud no procesa un pago.
+                    </p>
+                </div>
+            </aside>
+        </section>
+
+        <!-- RECOMENDACIONES -->
+        <section class="recomendaciones-carrito">
+            <div class="encabezado-recomendaciones">
+                <div>
+                    <p class="etiqueta-carrito">DESCUBRE TIZO</p>
+                    <h2>También te puede gustar.</h2>
+                </div>
+                <a href="clothing.html">Ver colección <i class="bi bi-arrow-up-right"></i></a>
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-6 col-md-4">
+                    <article class="recomendacion-producto">
+                        <a href="producto.html?id=1">
+                            <img src="red.jpg" alt="Playera Red Velvet" loading="lazy">
+                        </a>
+                        <h3>Red Velvet</h3>
+                        <p>$450 MXN</p>
+                        <button type="button" class="btn-recomendacion"
+                            data-producto="Red Velvet" data-precio="450">
+                            Agregar al carrito
+                        </button>
+                    </article>
+                </div>
+
+                <div class="col-6 col-md-4">
+                    <article class="recomendacion-producto">
+                        <a href="producto.html?id=2">
+                            <img src="FRPlayere.jpg" alt="Playera OnioN" loading="lazy">
+                        </a>
+                        <h3>OnioN</h3>
+                        <p>$400 MXN</p>
+                        <button type="button" class="btn-recomendacion"
+                            data-producto="OnioN" data-precio="400">
+                            Agregar al carrito
+                        </button>
+                    </article>
+                </div>
+
+                <div class="col-6 col-md-4">
+                    <article class="recomendacion-producto">
+                        <a href="producto.html?id=3">
+                            <img src="imagen3.jpg" alt="Playera VAES" loading="lazy">
+                        </a>
+                        <h3>VAES</h3>
+                        <p>$350 MXN</p>
+                        <button type="button" class="btn-recomendacion"
+                            data-producto="VAES" data-precio="350">
+                            Agregar al carrito
+                        </button>
+                    </article>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="footer-clothing text-center py-4">
+        <a href="index.html">Inicio</a>
+        <a href="clothing.html">Clothing</a>
+        <a href="contacto.html">Contacto</a>
+        <p class="mt-3 mb-0">TiZO — De México para el mundo.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    
+<script>
+    const CLAVE_CARRITO = "tizoCarrito";
+    const CORREO_TIZO = "dperz676@gmail.com";
+
+    const formatoMXN = (valor) =>
+        new Intl.NumberFormat("es-MX", {
+            style: "currency",
+            currency: "MXN"
+        }).format(valor);
+
+    function leerCarrito() {
+        try {
+            const datos = JSON.parse(
+                localStorage.getItem(CLAVE_CARRITO) || "[]"
+            );
+
+            if (!Array.isArray(datos)) return [];
+
+            return datos.filter(producto =>
+                producto &&
+                typeof producto.nombre === "string" &&
+                Number.isFinite(Number(producto.precio)) &&
+                Number(producto.precio) >= 0 &&
+                Number.isInteger(Number(producto.cantidad)) &&
+                Number(producto.cantidad) > 0
+            );
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function guardarCarrito(carrito) {
+        localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
+        mostrarCarrito();
+    }
+
+    function escaparHTML(texto) {
+        return String(texto).replace(/[&<>"']/g, caracter => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        })[caracter]);
+    }
+
+    function obtenerImagen(nombre) {
+        const imagenes = {
+            "Red Velvet": "red.jpg",
+            "OnioN": "FRPlayere.jpg",
+            "VAES": "imagen3.jpg",
+            "Modelo 04": "playera4.jpg",
+            "Modelo 05": "playera5.jpg",
+            "Modelo 06": "playera6.jpg",
+            "Modelo 07": "playera7.jpg",
+            "Modelo 08": "playera8.jpg",
+            "Modelo 09": "playera9.jpg"
+        };
+
+        return imagenes[nombre] || "FRPlayere.jpg";
+    }
+
+    function mostrarCarrito() {
+        const carrito = leerCarrito();
+
+        const contenedor = document.getElementById("productosCarrito");
+        const vacio = document.getElementById("carritoVacio");
+        const contador = document.getElementById("contadorCarrito");
+        const cantidadResumen = document.getElementById("cantidadResumen");
+        const subtotalElemento = document.getElementById("subtotalCarrito");
+        const botonPedido = document.getElementById("btnPedido");
+
+        const totalUnidades = carrito.reduce(
+            (total, producto) => total + Number(producto.cantidad), 0
+        );
+
+        const subtotal = carrito.reduce(
+            (total, producto) =>
+                total + Number(producto.precio) * Number(producto.cantidad),
+            0
+        );
+
+        contador.textContent = totalUnidades;
+        cantidadResumen.textContent = totalUnidades;
+        subtotalElemento.textContent = formatoMXN(subtotal);
+        botonPedido.disabled = carrito.length === 0;
+
+        vacio.hidden = carrito.length !== 0;
+        contenedor.hidden = carrito.length === 0;
+
+        if (carrito.length === 0) {
+            contenedor.innerHTML = "";
+            return;
+        }
+
+        contenedor.innerHTML = carrito.map((producto, indice) => {
+            const nombre = escaparHTML(producto.nombre);
+            const talla = escaparHTML(producto.talla || "M");
+            const imagen = obtenerImagen(producto.nombre);
+            const precio = Number(producto.precio);
+            const cantidad = Number(producto.cantidad);
+
+            return `
+                <article class="producto-carrito">
+                    <img
+                        src="${imagen}"
+                        alt="Playera ${nombre}"
+                        class="imagen-carrito"
+                    >
+
+                    <div class="datos-producto-carrito">
+                        <h3>${nombre}</h3>
+                        <p class="detalle-carrito">Talla: ${talla}</p>
+                        <p class="precio-carrito">${formatoMXN(precio)}</p>
+
+                        <div class="controles-cantidad">
+                            <button
+                                type="button"
+                                data-accion="restar"
+                                data-indice="${indice}"
+                                aria-label="Restar una unidad">−</button>
+
+                            <span>${cantidad}</span>
+
+                            <button
+                                type="button"
+                                data-accion="sumar"
+                                data-indice="${indice}"
+                                aria-label="Agregar una unidad">+</button>
+                        </div>
+                    </div>
+
+                    <div class="acciones-producto-carrito">
+                        <strong>${formatoMXN(precio * cantidad)}</strong>
+
+                        <button
+                            type="button"
+                            class="btn-eliminar"
+                            data-accion="eliminar"
+                            data-indice="${indice}">
+                            Eliminar
+                        </button>
+                    </div>
+                </article>
+            `;
+        }).join("");
+    }
+
+    // CAMBIAR CANTIDADES O ELIMINAR PRODUCTOS
+    document.getElementById("productosCarrito").addEventListener("click", function(event) {
+        const boton = event.target.closest("button[data-accion]");
+        if (!boton) return;
+
+        const indice = Number(boton.dataset.indice);
+        const carrito = leerCarrito();
+
+        if (!Number.isInteger(indice) || !carrito[indice]) return;
+
+        if (boton.dataset.accion === "sumar") {
+            carrito[indice].cantidad = Number(carrito[indice].cantidad) + 1;
+        }
+
+        if (boton.dataset.accion === "restar") {
+            carrito[indice].cantidad = Number(carrito[indice].cantidad) - 1;
+
+            if (carrito[indice].cantidad <= 0) {
+                carrito.splice(indice, 1);
+            }
+        }
+
+        if (boton.dataset.accion === "eliminar") {
+            carrito.splice(indice, 1);
+        }
+
+        guardarCarrito(carrito);
+    });
+
+    // AGREGAR RECOMENDACIONES
+    document.querySelectorAll(".btn-recomendacion").forEach(boton => {
+        boton.addEventListener("click", function() {
+            const nombre = boton.dataset.producto;
+            const precio = Number(boton.dataset.precio);
+            const carrito = leerCarrito();
+
+            const existente = carrito.find(producto =>
+                producto.nombre === nombre &&
+                (producto.talla || "M") === "M"
+            );
+
+            if (existente) {
+                existente.cantidad = Number(existente.cantidad) + 1;
+            } else {
+                carrito.push({
+                    nombre: nombre,
+                    precio: precio,
+                    talla: "M",
+                    cantidad: 1
+                });
+            }
+
+            guardarCarrito(carrito);
+
+            const textoOriginal = boton.textContent;
+            boton.textContent = "Agregada ✓";
+
+            setTimeout(() => {
+                boton.textContent = textoOriginal;
+            }, 1200);
+        });
+    });
+
+    // PREPARAR PEDIDO POR CORREO
+    document.getElementById("btnPedido").addEventListener("click", function() {
+        const carrito = leerCarrito();
+        if (carrito.length === 0) return;
+
+        const subtotal = carrito.reduce(
+            (total, producto) =>
+                total + Number(producto.precio) * Number(producto.cantidad),
+            0
+        );
+
+        const lineas = carrito.map(producto =>
+            `${producto.nombre} | Talla ${producto.talla || "M"} | Cantidad: ${producto.cantidad} | ${formatoMXN(Number(producto.precio) * Number(producto.cantidad))}`
+        );
+
+        const asunto = encodeURIComponent("Pedido de playeras TiZO");
+
+        const cuerpo = encodeURIComponent(
+            "Hola TiZO, me gustaría consultar este pedido:\n\n" +
+            lineas.join("\n") +
+            "\n\nSubtotal: " + formatoMXN(subtotal) +
+            "\n\nNombre:\nTeléfono de contacto:\nDirección de entrega:\n\n" +
+            "Quedo pendiente de confirmar disponibilidad, envío y forma de pago."
+        );
+
+        window.location.href =
+            "mailto:" + CORREO_TIZO +
+            "?subject=" + asunto +
+            "&body=" + cuerpo;
+    });
+
+    // MOSTRAR EL CARRITO AL ABRIR LA PÁGINA
+    mostrarCarrito();
+</script>
+</body>
+</html>
